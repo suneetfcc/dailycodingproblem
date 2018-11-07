@@ -10,4 +10,20 @@ Follow-up: what if you can't use division?
 
 
 def solve(numbers):
-    pass
+
+    L = len(numbers)
+    left = [1] * L
+    right = [1] * L
+
+    for i in range(1, L):
+        left[i] = left[i-1] * numbers[i-1]
+
+    for i in range(L-2,-1,-1):
+        right[i] = right[i+1] * numbers[i+1]
+
+    return [a*b for a,b in zip(left, right)]
+
+
+# Test Cases
+numbers = list(range(1,6))
+assert(solve(numbers)) == [120, 60, 40, 30, 24]
